@@ -3,7 +3,7 @@
 
 Usage:
     python scripts/smoke_test.py http://localhost:8000
-    python scripts/smoke_test.py https://your-backend.onrender.com --origin https://your-frontend.vercel.app
+    python scripts/smoke_test.py https://lyftr-chat-c8fd.onrender.com --origin https://lyftr-chat.vercel.app
 
 Uses only the standard library. Makes about 6 real LLM calls.
 """

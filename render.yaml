@@ -21,7 +21,7 @@ services:
       - key: ENABLE_FAILURE_SIMULATION
         value: "true"
       - key: ALLOWED_ORIGINS
-        sync: false # e.g. https://lyftr-chat-frontend.onrender.com
+        sync: false # e.g. https://lyftr-chat.vercel.app
       - key: LOG_LEVEL
         value: INFO
 
@@ -32,7 +32,7 @@ services:
     staticPublishPath: ./frontend/dist
     envVars:
       - key: VITE_API_BASE_URL
-        sync: false # e.g. https://lyftr-chat-backend.onrender.com
+        sync: false # e.g. https://lyftr-chat-c8fd.onrender.com
     headers:
       - path: /config.js
         name: Cache-Control

@@ -20,9 +20,9 @@ Browser (React)                     FastAPI backend                             
 
 | What | URL |
 |---|---|
-| Frontend | `https://<your-frontend>.vercel.app` ← fill in after deploying |
-| Backend | `https://<your-backend>.onrender.com` ← fill in (try `/health` and `/docs`) |
-| Repository | `https://github.com/<you>/lyftr-chat` |
+| Frontend | `https://lyftr-chat.vercel.app` |
+| Backend | `https://lyftr-chat-c8fd.onrender.com` (try `/health` and `/docs`) |
+| Repository | `https://github.com/Piyushydv08/lyftr-chat.git` |
 | Demo video | `<link>` |
 
 Step-by-step deployment (Render + Vercel, about 15 minutes): **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)**.
@@ -175,7 +175,7 @@ The header (`key_1=429`, `key_1=429,key_2=500`, `*=429`; statuses 429/500/502/50
 ### Quick: run the contract check
 
 ```bash
-python scripts/smoke_test.py https://<backend-url> --origin https://<frontend-url>
+python scripts/smoke_test.py https://lyftr-chat-c8fd.onrender.com --origin https://lyftr-chat.vercel.app
 ```
 
 It checks health, live → cache hit, identical reply, cache faster than live, multi-turn memory, the history endpoint, 404, four 422 cases, `key_1=429`/`key_1=500` → `key_2`, `*=429` → 503 with nothing stored, and CORS.

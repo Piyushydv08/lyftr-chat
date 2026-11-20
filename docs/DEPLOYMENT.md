@@ -13,7 +13,7 @@ Alternatives are listed at the end.
    cd lyftr-chat
    git init && git add . && git commit -m "LLM chatbot with key failover and caching"
    git branch -M main
-   git remote add origin https://github.com/<you>/lyftr-chat.git
+   git remote add origin https://github.com/Piyushydv08/lyftr-chat.git
    git push -u origin main
    ```
    `.env` is git-ignored, so your real keys never get committed. Check with `git status` before pushing.
@@ -40,7 +40,7 @@ Alternatives are listed at the end.
    | `CACHE_DIR` | `/data/llm_cache` |
    | `ALLOWED_ORIGINS` | `http://localhost:3000` (replaced in step 3) |
 
-4. **Create Web Service.** The first build takes about 3–5 minutes. Then open `https://<name>.onrender.com/health`. You should see
+4. **Create Web Service.** The first build takes about 3–5 minutes. Then open `https://lyftr-chat-c8fd.onrender.com/health`. You should see
    `{"status":"ok","keys_configured":2,"cache_enabled":true,...}`.
 
 > One-click alternative: **New → Blueprint** with this repo uses `render.yaml` and creates the backend and a Render static-site frontend together. You fill in `LLM_API_KEYS`, `ALLOWED_ORIGINS` and `VITE_API_BASE_URL` when prompted.
@@ -49,7 +49,7 @@ Alternatives are listed at the end.
 
 1. https://vercel.com/new → import the repo.
 2. **Root Directory:** `frontend`. The framework preset is detected as **Vite**: build `npm run build`, output `dist`.
-3. **Environment variable:** `VITE_API_BASE_URL` = `https://<name>.onrender.com` (no trailing slash).
+3. **Environment variable:** `VITE_API_BASE_URL` = `https://lyftr-chat-c8fd.onrender.com` (no trailing slash).
 4. **Deploy**, then copy the production URL, e.g. `https://lyftr-chat.vercel.app`.
 
 ## 3. Connect them (CORS)
@@ -62,7 +62,7 @@ If you also want Vercel preview URLs to work, set `ALLOWED_ORIGIN_REGEX` to `^ht
 ## 4. Verify before submitting
 
 ```bash
-python scripts/smoke_test.py https://<name>.onrender.com --origin https://lyftr-chat.vercel.app
+python scripts/smoke_test.py https://lyftr-chat-c8fd.onrender.com --origin https://lyftr-chat.vercel.app
 ```
 
 Every line should be PASS. Then open the frontend, send a message, and check that the browser console shows no CORS errors.
@@ -81,4 +81,4 @@ Every line should be PASS. Then open the frontend, send a message, and check tha
   3. Add the same variables as above.
   4. *Networking → Generate Domain*.
 - **Netlify / Cloudflare Pages (frontend):** base directory `frontend`, build `npm run build`, publish `dist`, env `VITE_API_BASE_URL`.
-- **Frontend as a container:** `docker build -t lyftr-frontend ./frontend && docker run -p 3000:3000 -e API_BASE_URL=https://<backend> lyftr-frontend`. The backend URL is read at container start.
+- **Frontend as a container:** `docker build -t lyftr-frontend ./frontend && docker run -p 3000:3000 -e API_BASE_URL=https://lyftr-chat-c8fd.onrender.com lyftr-frontend`. The backend URL is read at container start.
