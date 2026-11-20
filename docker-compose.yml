@@ -1,0 +1,35 @@
+name: lyftr-chat
+
+services:
+  backend:
+    build:
+      context: ./backend
+      target: runtime
+    env_file: .env
+    environment:
+      # SQLite and the disk response cache live on the named volume below,
+      # so history and cached answers survive container restarts.
+      DATABASE_URL: ${DATABASE_URL:-sqlite:////data/app.db}
+      CACHE_DIR: ${CACHE_DIR:-/data/llm_cache}
+      PORT: "8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - app_data:/data
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      target: runtime
+    environment:
+      # URL the *browser* uses to reach the backend.
+      API_BASE_URL: ${PUBLIC_API_BASE_URL:-http://localhost:8000}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  app_data:

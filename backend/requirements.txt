@@ -1,0 +1,7 @@
+# Runtime dependencies (pinned for reproducible builds).
+fastapi==0.165.0
+uvicorn==0.54.0
+# 1.83.x: stable Router fallbacks + caching_groups; cache hits work with base deps only.
+# (Avoids the compromised 1.82.7/1.82.8 PyPI releases.)
+litellm==1.83.14
+diskcache==5.6.3
